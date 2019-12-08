@@ -20,3 +20,4 @@ jobs:
             cargo build --release
             mkdir -p ~/scraper
             cp -rf target/release/linz-port-webcam-scraper-rust ~/scraper
+          script_stop: true
