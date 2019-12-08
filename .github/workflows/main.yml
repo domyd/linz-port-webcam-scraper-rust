@@ -1,0 +1,26 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: install on vps
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.HOST}}
+          username: ${{secrets.USERNAME}}
+          password: ${{secrets.PASSWORD}}
+          script: |
+            whoami
+            ls -al
+            cargo --version
+            if [ -d "linz-port-webcam-scraper-rust" ]; then rm -rf linz-port-webcam-scraper-rust; fi
+            git clone https://github.com/domyd/linz-port-webcam-scraper-rust.git && cd linz-port-webcam-scraper-rust
+            cargo build --release
+            mkdir -p ~/scraper
+            cp -rf target/release/linz-port-webcam-scraper-rust ~/scraper
+          script_stop: true
