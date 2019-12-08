@@ -15,6 +15,9 @@ jobs:
           username: ${{secrets.USERNAME}}
           password: ${{secrets.PASSWORD}}
           script: |
+            whoami
+            ls -al
+            cargo --version
             if [ -d "linz-port-webcam-scraper-rust" ]; then rm -rf linz-port-webcam-scraper-rust; fi
             git clone https://github.com/domyd/linz-port-webcam-scraper-rust.git && cd linz-port-webcam-scraper-rust
             cargo build --release
