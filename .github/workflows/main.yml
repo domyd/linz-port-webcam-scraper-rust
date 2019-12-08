@@ -11,7 +11,7 @@ jobs:
       - name: install on vps
         uses: appleboy/ssh-action@v0.0.2
         with:
-          host: ${{secrets.HOST}}
+          host: "10.130.145.98"
           username: ${{secrets.USERNAME}}
           password: ${{secrets.PASSWORD}}
           script: |
